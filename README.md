@@ -11,3 +11,4 @@
 3. COPY คำสั่ง SQL ในไฟล์ data.sql ไป INSERT ในตาราง testdb
 4. เข้าไปในโฟลเดอร์ backend พิมพ์ใน Windows PowerShell : ./gradlew runboot
 5. เปิด Web Browser ไปที่ลิงค์ http://localhost:8080/swagger-ui/index.html
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/4740804b-d2fe-484f-af0a-bda496062700" />
