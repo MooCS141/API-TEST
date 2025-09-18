@@ -1,35 +1,53 @@
 # API-TEST
 
-สิ่งที่ต้องมี
-- โปรแกรม Visual Studio Code IDE (ลง Extention : Extension Pack for Java, Spring Boot Extension Pack)
-- Java JDK 21 (โหลดได้ที่ https://adoptium.net/) (ระหว่างขั้นตอน Downloads กด set or override JAVA_HOME ด้วยสำคัญมาก)
-- <img width="495" height="387" alt="image" src="https://github.com/user-attachments/assets/8387d1d7-0720-4cf0-96a6-bf950d69db50" />
-- โปรแกรม XAMPP
+โปรเจกต์ทดสอบ API ด้วย **Spring Boot + Java 21** พร้อมการทำงานผ่าน **Swagger UI**
 
-1. เปิดใช้งาน Apache และ MySQL ใน XAMPP
-2. สร้างตารางใหม่ใน phpMyAdmin ตั้งชื่อว่า testdb
-3. COPY คำสั่ง SQL ในไฟล์ data.sql ไป INSERT ในตาราง testdb
-4. เข้าไปในโฟลเดอร์ backend พิมพ์ใน Windows PowerShell : ./gradlew runboot
-5. เปิด Web Browser ไปที่ลิงค์ http://localhost:8080/swagger-ui/index.html
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/4740804b-d2fe-484f-af0a-bda496062700" />
+---
 
-ขั้นแรกสร้างบัญชีผู้ใช้งานก่อน POST /auth/register/admin
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/03601843-1e48-4e00-b526-6dc0aeb5233f" />
+## 📑 Table of Contents
+- [สิ่งที่ต้องเตรียม](#-สิ่งที่ต้องเตรียม)
+- [ขั้นตอนการติดตั้งและใช้งาน](#️-ขั้นตอนการติดตั้งและใช้งาน)
+  - [ตั้งค่า Database](#1-ตั้งค่า-database)
+  - [รัน Backend](#2-รัน-backend)
+  - [เปิด Swagger UI](#3-เปิด-swagger-ui)
+- [การใช้งาน Authentication](#-การใช้งาน-authentication)
+  - [สมัครสมาชิก (Register Admin)](#1-สมัครสมาชิก-register-admin)
+  - [เข้าสู่ระบบ (Login)](#2-เข้าสู่ระบบ-login)
+  - [ใส่ Token เพื่อ Authorize](#3-ใส่-token-เพื่อ-authorize)
+  - [ทดลองใช้งาน API](#4-ทดลองใช้งาน-api)
+- [หมายเหตุ](#-หมายเหตุ)
+- [สรุป](#-สรุป)
 
-เมื่อ Register เสร็จแล้ว ไป Login ต่อเลยที่ POST /auth/login จะได้ Token ให้ Copy Token ไว้
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/5b0b6fac-a456-4aea-8292-74cc281a5dc3" />
+---
 
-กด Authorize
-<img width="636" height="385" alt="image" src="https://github.com/user-attachments/assets/14560cfe-7fec-4812-9991-a4f2ce60640a" />
+## 📦 สิ่งที่ต้องเตรียม
 
-ตอนนี้ใช้งานใน /users ได้แค่ GET
-ใส่ Token หลังจากนี้จะสามารถใช้งาน Method อื่นใน /users ได้เพราะจำกัด Role ไว้ ให้ใช้ได้แค่ ADMIN
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/30c56c17-e9cd-4959-9792-932ca229f309" />
+- **Visual Studio Code (IDE)**
+  - ติดตั้ง Extensions ที่จำเป็น:
+    - [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+    - [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=pivotal.vscode-spring-boot)
 
-ถ้าไม่ใส่ Token หรือ Token หมดอายุจะ Return HTTP Status 401
+- **Java JDK 21**
+  - ดาวน์โหลดได้ที่ 👉 [Adoptium.net](https://adoptium.net/)
+  - **สำคัญ:** ระหว่างการติดตั้ง กด **set or override JAVA_HOME**
 
-วิธีเช็ค Token ไปที่ https://www.jwt.io/
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/7b140caa-f0e1-4d31-b7d1-509f60e9a245" />
+  <img width="495" height="387" alt="jdk-setup" src="https://github.com/user-attachments/assets/8387d1d7-0720-4cf0-96a6-bf950d69db50" />
 
+- **XAMPP** (ใช้ Apache + MySQL)
 
-สามารถเล่นได้เต็มที่ มีการจัดการ Validation และ Exception ไว้เป็นอย่างดี
+---
+
+## ⚙️ ขั้นตอนการติดตั้งและใช้งาน
+
+### 1. ตั้งค่า Database
+1. เปิดใช้งาน **Apache** และ **MySQL** ผ่าน XAMPP  
+2. เข้า **phpMyAdmin** แล้วสร้าง Database ใหม่ชื่อ `testdb`  
+3. เปิดไฟล์ `data.sql` → คัดลอกคำสั่ง SQL ไป **INSERT** ลงใน `testdb`
+
+---
+
+### 2. รัน Backend
+ไปที่โฟลเดอร์ `backend` แล้วรันคำสั่ง:
+
+```powershell
+./gradlew runboot
