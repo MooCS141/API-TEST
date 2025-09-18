@@ -1,6 +1,6 @@
 # API-TEST
 
-โปรเจกต์ทดสอบ API ด้วย **Spring Boot + Java 21** พร้อมการทำงานผ่าน **Swagger UI**
+โปรเจกต์ทดสอบ API ด้วย **Java 21 + Spring Boot 3.5.x + MySQL** พร้อมการทำงานผ่าน **Swagger UI**
 
 ---
 
