@@ -37,7 +37,7 @@
     ```sh
     ./gradlew bootrun
     ```
-4.  เมื่อเซิร์ฟเวอร์ทำงานสำเร็จแล้ว คุณจะสามารถเข้าถึงหน้า документация ของ API ผ่าน Swagger UI ได้ที่ลิงก์นี้:
+4.  เมื่อเซิร์ฟเวอร์ทำงานสำเร็จแล้ว คุณจะสามารถเข้าถึงหน้า API Document ของ API ผ่าน Swagger UI ได้ที่ลิงก์นี้:
     [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
     <img width="1920" alt="Swagger UI page" src="https://github.com/user-attachments/assets/4740804b-d2fe-484f-af0a-bda496062700" />
